@@ -6,11 +6,8 @@ const validateLength = ([x, y]) => {
   throw Error('DNA strands must be of equal length.');
 };
 
-// toArray :: String -> [Char]
-const toArray = x => Array.from(x);
-
 // toArrays :: [String] -> [[Char]]
-const toArrays = ([x, y]) => [toArray(x), toArray(y)];
+const toArrays = ([x, y]) => [[...x], [...y]];
 
 // toTuples :: [[Char]] -> [[Char]]
 const toTuples = ([xs, ys]) => xs.map((x, idx) => [x, ys[idx]]);
