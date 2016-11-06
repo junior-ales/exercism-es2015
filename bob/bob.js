@@ -48,13 +48,10 @@ const interpret = compose(head, keys, filter(equals(true)));
 // answer :: String -> String
 const answer = msg => mapMsgAnswer[msg];
 
-// hey :: String -> String
-const hey = compose(answer, interpret, hear);
-
 class Bob {
   // hey :: String -> String
   hey(message) {
-    return hey(message);
+    return compose(answer, interpret, hear)(message);
   }
 }
 
