@@ -33,10 +33,10 @@ const mapMsgAnswer = {
 };
 
 // hear :: String -> { String: Boolean }
-const hear = msgString => {
-  const isSilence = isEmpty(msgString);
-  const isShouting = !isSilence && allLettersUppercase(msgString);
-  const isQuestion = !isShouting && endsWithQuestion(msgString);
+const hear = m => {
+  const isSilence = isEmpty(m);
+  const isShouting = !isSilence && allLettersUppercase(m);
+  const isQuestion = !isShouting && endsWithQuestion(m);
   const isWhatever = !isQuestion;
 
   return { isSilence, isShouting, isQuestion, isWhatever };
