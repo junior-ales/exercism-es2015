@@ -23,5 +23,7 @@
   "licenses": [
     "MIT"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "ramda": "^0.22.1"
+  }
 }
