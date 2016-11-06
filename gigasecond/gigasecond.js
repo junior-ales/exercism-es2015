@@ -1,4 +1,4 @@
-const gigaSecInMilli = 10e11;
+const gigaSecInMilli = 1e12;
 
 class Gigasecond {
   constructor(startDate) {
@@ -6,7 +6,7 @@ class Gigasecond {
   }
 
   date() {
-    return new Date(Number(this.startDate) + gigaSecInMilli);
+    return new Date(this.startDate.getTime() + gigaSecInMilli);
   }
 }
 
