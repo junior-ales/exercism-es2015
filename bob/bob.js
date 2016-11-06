@@ -1,10 +1,10 @@
-import { both } from 'ramda';
+import { compose, both, filter, equals, head, keys } from 'ramda';
 
 // isUpperCase :: String -> Boolean
 const isUpperCase = c => c === c.toUpperCase();
 
-// isQuestion :: String -> Boolean
-const isQuestion = s => s.endsWith('?');
+// endsWithQuestion :: String -> Boolean
+const endsWithQuestion = s => s.endsWith('?');
 
 // hasLetters :: String -> Boolean
 const hasLetters = s => /[a-zA-Z]/.test(s);
@@ -18,17 +18,43 @@ const allLettersUppercase = both(hasLetters, allUpperCase);
 // isEmpty :: String -> Boolean
 const isEmpty = s => s.trim().length === 0;
 
+const answers = {
+  fine: 'Fine. Be that way!',
+  chillOut: 'Whoa, chill out!',
+  sure: 'Sure.',
+  whatever: 'Whatever.'
+};
+
+const mapMsgAnswer = {
+  isSilence: answers.fine,
+  isShouting: answers.chillOut,
+  isQuestion: answers.sure,
+  isWhatever: answers.whatever
+};
+
+// hear :: String -> { String: Boolean }
+const hear = msgString => {
+  const isSilence = isEmpty(msgString);
+  const isShouting = !isSilence && allLettersUppercase(msgString);
+  const isQuestion = !isShouting && endsWithQuestion(msgString);
+  const isWhatever = !isQuestion;
+
+  return { isSilence, isShouting, isQuestion, isWhatever };
+};
+
+// interpret :: { String: Boolean } -> String
+const interpret = compose(head, keys, filter(equals(true)));
+
+// answer :: String -> String
+const answer = msg => mapMsgAnswer[msg];
+
+// hey :: String -> String
+const hey = compose(answer, interpret, hear);
+
 class Bob {
   // hey :: String -> String
   hey(message) {
-    if (isEmpty(message))
-      return 'Fine. Be that way!';
-    else if (allLettersUppercase(message))
-      return 'Whoa, chill out!';
-    else if (isQuestion(message))
-      return 'Sure.';
-    else
-      return 'Whatever.';
+    return hey(message);
   }
 }
 
