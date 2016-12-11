@@ -18,10 +18,12 @@
     "yargs": "~3.27.0"
   },
   "scripts": {
-    "test": "gulp lint test"
+    "test": "gulp clean lint test"
   },
   "licenses": [
     "MIT"
   ],
-  "dependencies": {}
+  "dependencies": {
+    "ramda": "^0.22.1"
+  }
 }

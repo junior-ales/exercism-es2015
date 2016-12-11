@@ -4,6 +4,7 @@
     "node": true,
     "jasmine": true
   },
+  "esversion": 6,
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
