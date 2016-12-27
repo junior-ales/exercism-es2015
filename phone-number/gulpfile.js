@@ -16,7 +16,6 @@ const gulp = require('gulp'),
   eslint = require('gulp-eslint'),
   jasmine = require('gulp-jasmine'),
   babel = require('gulp-babel'),
-  polyfill = require('babel/polyfill'),
   del = require('del'),
   argv  = require('yargs').argv,
   inputDir = getInputDirectory(argv),
@@ -38,7 +37,11 @@ gulp.task('babel', function () {
 });
 
 gulp.task('lint', function () {
-  return gulp.src([ inputDir + '/*.js' ])
+  return gulp.src([
+    '!gulpfile.js',
+    inputDir + '/*.js',
+    '!' + inputDir + '/*spec.js'
+    ])
     .pipe(eslint({
       envs: [
         'es6'  //turns on all es6 features except modules
