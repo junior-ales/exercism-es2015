@@ -4,22 +4,23 @@ import * as R from 'ramda';
 const { Just, Nothing } = Maybe;
 const { Left, Right } = Either;
 
-// mask :: String -> String
-const mask = n => {
-  return `(${R.slice(0, 3, n)}) ${R.slice(3, 6, n)}-${R.slice(6, Infinity, n)}`;
+// toPhoneNumber :: String -> PhoneNumber
+const toPhoneNumber = n => {
+  const _areaCode = R.take(3, n);
+  const _prefix = R.slice(3, 6, n);
+  const _sufix = R.drop(6, n);
+
+  return {
+    number: () => n,
+    areaCode: () => _areaCode,
+    toString: () => `(${_areaCode}) ${_prefix}-${_sufix}`
+  };
 };
 
-// toPhoneNumber :: String -> PhoneNumber
-const toPhoneNumber = n => ({
-  number: () => n,
-  areaCode: () => R.take(3, n),
-  toString: () => mask(n)
-});
-
-// beginsWithValidDigit :: String :: Maybe(String)
+// beginsWithValidDigit :: String -> Maybe(String)
 const beginsWithValidDigit = n => R.head(n) === '1' ? Just(n) : Nothing();
 
-// validateElevenDigitsNumber :: String :: Maybe(String)
+// validateElevenDigitsNumber :: String -> Maybe(String)
 const validateElevenDigitsNumber = R.compose(R.map(R.tail), beginsWithValidDigit);
 
 // hasElevenDigits :: String -> Either[String, String]

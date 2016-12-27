@@ -28,7 +28,7 @@ describe('PhoneNumber()', () => {
     expect(phone.areaCode()).toEqual('123');
   });
 
-  fit('formats a number', () => {
+  it('formats a number', () => {
     const phone = new PhoneNumber('1234567890');
     expect(phone.toString()).toEqual('(123) 456-7890');
   });
