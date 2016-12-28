@@ -9,8 +9,12 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
+  "plugins": [
+    "fp"
+  ],
   "extends": [
-    "eslint:recommended"
+    "eslint:recommended",
+    "plugin:fp/recommended"
   ],
   "rules": {
     "no-console": 0,
