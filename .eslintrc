@@ -9,30 +9,28 @@
     "ecmaVersion": 6,
     "sourceType": "module"
   },
-  "plugins": [
-    "fp"
-  ],
-  "extends": [
-    "eslint:recommended",
-    "plugin:fp/recommended"
-  ],
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "extends": ["eslint:recommended"],
   "rules": {
     "no-console": 0,
-    "camelcase": [ 2, { "properties": "always" } ],
+    "camelcase": [2, { "properties": "always" }],
     "linebreak-style": 2,
     "block-scoped-var": 2,
-    "brace-style": [ 2, "1tbs", { "allowSingleLine": true } ],
-    "semi": [ 2, "always" ],
+    "brace-style": [2, "1tbs", { "allowSingleLine": true }],
+    "semi": [2, "always"],
     "no-native-reassign": 2,
     "eqeqeq": 2,
     "no-eval": 2,
     "no-extend-native": 2,
-    "radix": [ 2, "always" ],
+    "radix": [2, "always"],
     "no-loop-func": 2,
-    "wrap-iife": [ 2, "inside" ],
+    "wrap-iife": [2, "inside"],
     "dot-notation": 1,
-    "no-magic-numbers": 1,
+    "no-magic-numbers": 0,
     "no-else-return": 1,
-    "quotes": [ 1, "single" ]
+    "no-unused-vars": 1,
+    "quotes": [1, "single"]
   }
 }
