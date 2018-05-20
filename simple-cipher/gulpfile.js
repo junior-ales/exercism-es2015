@@ -49,7 +49,6 @@ gulp.task('lint', function() {
 
           // Possible errors
           'comma-dangle': [2, 'never'], // don't let a comma at the end of object properties or array element
-          'no-magic-numbers': 2,
           'no-cond-assign': [2, 'always'], // no assignments in conditional statements
           'no-console': 2, // no console.log() statements in production code
           'no-constant-condition': 2, // no constants in conditional statements
@@ -69,6 +68,7 @@ gulp.task('lint', function() {
           'no-invalid-regexp': 2, // validates string arguments passed to RegExp constructor
           'no-irregular-whitespace': 2, // detects special characters used as spaces
           'no-negated-in-lhs': 2, // do not use negation in the left operand in an `in` expression
+          'no-magic-numbers': 0,
           'no-obj-calls': 2, // prevent calling global objects as if they were functions
           'no-regex-spaces': 2, // do not use multiple spaces in regex's
           'no-sparse-arrays': 2, // do not use sparse arrays (empty elements)

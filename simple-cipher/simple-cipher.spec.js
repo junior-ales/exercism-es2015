@@ -1,5 +1,15 @@
 import Cipher from './simple-cipher';
 
+describe('Random key generation', () => {
+  xit('generates keys at random', () => {
+    // Strictly speaking, this is difficult to test with 100% certainty.
+    // But, if you have a generator that generates 100-character-long
+    // strings of lowercase letters at random, the odds of two consecutively
+    // generated keys being identical are astronomically low.
+    expect(new Cipher().key).not.toEqual(new Cipher().key);
+  });
+});
+
 describe('Random key cipher', () => {
   const cipher = new Cipher();
 
@@ -7,13 +17,8 @@ describe('Random key cipher', () => {
     expect(cipher.key).toMatch(/^[a-z]+$/);
   });
 
-  it('encode iamapandabear with default key', () => {
-    expect(cipher.encode('iamapandabear')).toEqual('iamapandabear');
-  });
-
-  it('encode iamapandabear with dddddddddddd key', () => {
-    const cipher = new Cipher('ddddddddddddddddddddddddd');
-    expect(cipher.encode('iamapandabear')).toEqual('ldpdsdqgdehdu');
+  xit('has a key that is at least 100 characters long', () => {
+    expect(cipher.key.length).toBeGreaterThanOrEqual(100);
   });
 
   // Here we take advantage of the fact that plaintext of "aaa..."
@@ -79,7 +84,15 @@ describe('Substitution cipher', () => {
     );
   });
 
-  it('can wrap', () => {
+  it('can wrap on encode', () => {
     expect(cipher.encode('zzzzzzzzzz')).toEqual('zabcdefghi');
+  });
+
+  it('can wrap on decode', () => {
+    expect(cipher.decode('zabcdefghi')).toEqual('zzzzzzzzzz');
+  });
+
+  xit('can handle messages longer than the key', function() {
+    expect(new Cipher('abc').encode('iamapandabear')).toEqual('iboaqcnecbfcr');
   });
 });

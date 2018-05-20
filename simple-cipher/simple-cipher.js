@@ -1,8 +1,9 @@
 const defaultKey = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 const isValidKey = key => RegExp('^[a-z]+$').test(key);
-const alphabet = 'abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz';
+const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 const add = (x, y) => x + y;
 const sub = (x, y) => x - y;
+const head = x => x[0];
 
 class Cipher {
   constructor(key = defaultKey) {
@@ -11,15 +12,19 @@ class Cipher {
     }
 
     this.key = key;
-    this.keyShift = Array.from(this.key).map(l => alphabet.indexOf(l));
+    this.keyShiftValues = Array.from(this.key).map(l => alphabet.indexOf(l));
   }
 
   cipherOperation(val, operator) {
     return Array.from(val)
-      .map((letter, index) =>
-        operator(alphabet.indexOf(letter), this.keyShift[index])
-      )
-      .map(cipheredLetterIndex => alphabet[cipheredLetterIndex])
+      .map((letter, index) => {
+        const offset = operator(
+          alphabet.indexOf(letter),
+          this.keyShiftValues[index]
+        );
+        return offset % alphabet.length;
+      })
+      .map(cipheredLetterIndex => head(alphabet.slice(cipheredLetterIndex)))
       .join('');
   }
 
