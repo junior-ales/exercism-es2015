@@ -45,7 +45,7 @@ Given the key "aaaaaaaaaaaaaaaaaa", encoding the string "iamapandabear"
 would return the original "iamapandabear".
 
 Given the key "ddddddddddddddddd", encoding our string "iamapandabear"
-would return the obscured "lpdsdqgdehdu"
+would return the obscured "ldpdsdqgdehdu"
 
 In the example above, we've set a = 0 for the key value. So when the
 plaintext is added to the key, we end up with the same message coming
@@ -124,5 +124,5 @@ changing `xit` to `it`.
 Substitution Cipher at Wikipedia [http://en.wikipedia.org/wiki/Substitution_cipher](http://en.wikipedia.org/wiki/Substitution_cipher)
 
 ## Submitting Incomplete Problems
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
 
+It's possible to submit an incomplete solution so you can see how others have completed the exercise.
