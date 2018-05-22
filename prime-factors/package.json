@@ -20,8 +20,6 @@
   "scripts": {
     "test": "gulp lint test"
   },
-  "licenses": [
-    "MIT"
-  ],
+  "license": "MIT",
   "dependencies": {}
 }
