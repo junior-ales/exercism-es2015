@@ -1,22 +1,3 @@
-const buildNode = (value, bst) => {
-  if (bst === null) return new BinarySearchTree(value);
-  return bst.insert(value);
-};
-
-const callValuesInAscendingOrder = (fn, bst) => {
-  if (bst === null) return;
-
-  if (bst.left) {
-    callValuesInAscendingOrder(fn, bst.left);
-  }
-
-  fn(bst.data);
-
-  if (bst.right) {
-    callValuesInAscendingOrder(fn, bst.right);
-  }
-};
-
 // testing purposes only
 const collectValuesInAscendingOrder = bst => {
   if (bst === null) return [];
@@ -35,12 +16,16 @@ const collectValuesInAscendingOrder = bst => {
   return [...leftResult, bst.data, ...rightResult];
 };
 
+const buildNode = (value, bst) => {
+  if (bst === null) return new BinarySearchTree(value);
+  return bst.insert(value);
+};
+
 export default class BinarySearchTree {
-  constructor(data, left = null, right = null, pointer) {
+  constructor(data, left = null, right = null) {
     this.data = data;
     this.left = left;
     this.right = right;
-    this.pointer = pointer;
   }
 
   insert(value) {
@@ -54,7 +39,15 @@ export default class BinarySearchTree {
   }
 
   each(callback) {
-    callValuesInAscendingOrder(callback, this);
+    if (this.left) {
+      this.left.each(callback);
+    }
+
+    callback(this.data);
+
+    if (this.right) {
+      this.right.each(callback);
+    }
   }
 
   // testing purposes only
