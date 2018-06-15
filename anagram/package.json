@@ -20,8 +20,9 @@
   "scripts": {
     "test": "gulp lint test"
   },
-  "licenses": [
-    "MIT"
-  ],
+  "license": "MIT",
+  "prettier": {
+    "singleQuote": true
+  },
   "dependencies": {}
 }
