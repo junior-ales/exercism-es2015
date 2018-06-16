@@ -72,7 +72,8 @@
       "import/no-unresolved": "off",
       "import/extensions": "off",
       "no-pluplus": "off",
-      "arrow-parens": "off"
+      "arrow-parens": "off",
+      "no-unused-vars": 1
     }
   },
   "prettier": {
