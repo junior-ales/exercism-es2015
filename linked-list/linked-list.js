@@ -18,13 +18,13 @@ const addInTheEnd = (value, nodes) => {
   return new Node(nodes.value, new Node(value));
 };
 
-const getFromTheEnd = nodes => {
+const takeFromTheEnd = nodes => {
   if (!nodes) {
     throw Error('Get from the end of null nodes');
   }
 
   if (nodes.nextNode) {
-    const [value, newNode] = getFromTheEnd(nodes.nextNode);
+    const [value, newNode] = takeFromTheEnd(nodes.nextNode);
     return [value, new Node(nodes.value, newNode)];
   }
 
@@ -37,8 +37,11 @@ const countNodes = (nodes, count = 0) => {
   return count + 1;
 };
 
-// TODO
-const deleteValue = (value, nodes) => nodes;
+const deleteValue = (value, nodes) => {
+  if (!nodes) return null;
+  if (nodes.value === value) return nodes.nextNode;
+  return new Node(nodes.value, deleteValue(value, nodes.nextNode));
+};
 
 export default class LinkedList {
   constructor() {
@@ -54,7 +57,7 @@ export default class LinkedList {
   }
 
   pop() {
-    const [value, nodes] = getFromTheEnd(this.nodes);
+    const [value, nodes] = takeFromTheEnd(this.nodes);
     this.nodes = nodes;
 
     return value;
